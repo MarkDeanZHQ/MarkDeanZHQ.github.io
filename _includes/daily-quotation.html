@@ -1,0 +1,36 @@
+<p class="site-subtitle fst-italic mb-0" id="daily-quot">{{ site.tagline }}</p>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    function getNowFormatDate() {
+        let date = new Date(),
+            year = date.getFullYear(), /*获取完整的年份(4位)*/
+            month = date.getMonth() + 1, /*获取当前月份(0-11,0代表1月)*/
+            day = date.getDate() /* 获取当前日(1-31)*/
+        if (month < 10) month = `0${month}` /* 如果月份是个位数，在前面补0 */
+        if (day < 10) day = `0${day}` /* 如果日是个位数，在前面补0 */
+        console.log(`${year}-${month}-${day}`)
+        return `${year}-${month}-${day}`
+    }
+
+    $.ajax({
+        url: "https://sentence.iciba.com/index.php?callback=jQuery190012654789607849026_1587647616150&c=dailysentence&m=getdetail&title="+getNowFormatDate()+"&_=1587647616178",
+        dataType: 'jsonp', /* 使用jsonp数据类型来跨域请求 */
+        jsonpCallback: 'callback', /* 指定回调函数名 */
+        success: function (data) {
+            /* 解析返回的JSON数据 */
+            var content = data.content;
+            console.log(content);
+            /* 在这里对content进行你想要的操作 */
+        },
+        error: function (xhr, status, error) {
+            console.log('请求失败');
+        }
+    });
+
+    /* 回调函数用于处理返回的JSON数据 */
+    function callback(response) {
+        /* 在这里可以根据需要对返回的数据进行处理 */
+        document.getElementById("daily-quot").innerHTML=response.content;
+    }
+
+</script>
