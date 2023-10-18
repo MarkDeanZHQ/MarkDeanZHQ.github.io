@@ -113,3 +113,107 @@ lite_component("app") {
 
 * **my_app** is relative path. 
 * **myapp** is target wich refer to static_library{"myapp"} in my_app/BUILD.gn
+
+
+
+## Ninja introduction
+file convert & link : .c -> .a -> .bin
+
+
+
+
+## task related conception
+![task related](https://raw.githubusercontent.com/MarkDeanZHQ/ImageHost/main/zhq_shack/_posts/2023-10-11-bearpi-harmonyos.md/585790316231059.png)
+
+### manage thread
+![manage thread](https://raw.githubusercontent.com/MarkDeanZHQ/ImageHost/main/zhq_shack/_posts/2023-10-11-bearpi-harmonyos.md/404200516249485.png)
+
+### mechanism of thread
+![mechanism](https://raw.githubusercontent.com/MarkDeanZHQ/ImageHost/main/zhq_shack/_posts/2023-10-11-bearpi-harmonyos.md/387230616237352.png)
+
+
+### create thread interface
+![create thread](https://raw.githubusercontent.com/MarkDeanZHQ/ImageHost/main/zhq_shack/_posts/2023-10-11-bearpi-harmonyos.md/268540816257518.png)
+
+
+### example
+```c
+#include <stdio.h>
+#include <string.h>
+#include <unistd.h>
+
+#include "ohos_init.h"
+#include "cmsis_os2.h"
+#include "wifiiot_gpio.h"
+#include "wifiiot_gpio_ex.h"
+
+void thread1(void)
+{
+    int sum = 0;
+    while (1)
+    {
+        printf("This is Led Thread1----%d\r\n", sum++);
+        GpioSetOutputVal(WIFI_IOT_IO_NAME_GPIO_2, 1);
+        usleep(1000000);
+        GpioSetOutputVal(WIFI_IOT_IO_NAME_GPIO_2,0);
+        usleep(1000000);
+    }
+}
+
+void thread2(void)
+{
+    int sum = 0;
+    while (1)
+    {
+        printf("This is BearPi Harmony Thread2----%d\r\n", sum++);
+        usleep(500000); //延时0.5s
+    }
+}
+
+static void Thread_example(void)
+{
+    GpioInit();
+    IoSetFunc(WIFI_IOT_IO_NAME_GPIO_2,WIFI_IOT_IO_FUNC_GPIO_2_GPIO);
+    GpioSetDir(WIFI_IOT_IO_NAME_GPIO_2,WIFI_IOT_GPIO_DIR_OUT);
+    osThreadAttr_t attr;
+
+    attr.name = "thread1";
+    attr.attr_bits = 0U; // decide if osThreadJoin can be used: 0U means off & 1U means on
+    attr.cb_mem = NULL; // set the pointer to control block
+    attr.cb_size = 0U;
+    attr.stack_mem = NULL;// set the pointer to control stack
+    attr.stack_size = 1024 * 4;
+    attr.priority = 25; 
+
+    if (osThreadNew((osThreadFunc_t)thread1, NULL, &attr) == NULL)
+    {
+        printf("Falied to create thread1!\n");
+    }
+
+    attr.name = "thread2";
+
+    if (osThreadNew((osThreadFunc_t)thread2, NULL, &attr) == NULL)
+    {
+        printf("Falied to create thread2!\n");
+    }
+}
+APP_FEATURE_INIT(Thread_example);
+```
+{: .file='my_thread/thread.c'}
+
+```java
+static_library("mythread") {
+    sources = [
+        "thread.c"     
+    ]
+
+    include_dirs = [
+        "//utils/native/lite/include",   // printf
+        "//kernel/liteos_m/components/cmsis/2.0",  // thread
+        "//base/iot_hardware/interfaces/kits/wifiiot_lite" // led light
+    ]
+}
+
+```
+{: file='my_thread/BUILD.gn' }
+
