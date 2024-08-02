@@ -117,12 +117,12 @@ comments:
     issue_term: "pathname" # < url | pathname | title | ...>
   # Giscus options › https://giscus.app
   giscus:
-    repo: "MarkDeanZHQ/MarkDeanZHQ.github.io" # <gh-username>/<repo>
-    repo_id: "R_kgDOMdxCTw"
-    category: "Announcements"
-    category_id: "DIC_kwDOMdxCT84ChV4-"
-    mapping: "pathname" # optional, default to 'pathname'
-    data-loading: "lazy"
+    repo: MarkDeanZHQ/MarkDeanZHQ.github.io # <gh-username>/<repo>
+    repo_id: R_kgDOMeWwag
+    category: Announcements
+    category_id: DIC_kwDOMeWwas4ChWy-
+    mapping: 'pathname' # optional, default to 'pathname'
+    data-loading: 'lazy'
     strict: # optional, default to '0'
     input_position: 'top' # optional, default to 'bottom'
     lang: # optional, default to the value of `site.lang`
