@@ -1,6 +1,6 @@
 ---
-categories: [CSPostgraduate, Computer Organization]
-tags: [CSpostgraduate, computer organization]
+categories: [CS, Computer Organization]
+tags: [CS, computer organization]
 math: true
 mermaid: true
 render_with_liquid: true
@@ -438,6 +438,7 @@ Easy-Understand View:
 
 #### Advanced CPU Designs
 >Boost performance allowing not only simple instructions to run fast, but also performing much more sophisticated operations.
+{: .prompt-tip }
 The ways to Advance CPU:  
 * Improve the speed of switching transistors
 * Design specific circuit to complete sophisticated operation, like divide, game and video codec.
@@ -460,6 +461,7 @@ The ways to Advance CPU:
 ##### Cache
 >Scenario: A "load from RAM" instruction might take dozens of clock cycles to complete, and during this time the CPU processor is just sitting there idly waiting for the data. One solution is to put a little piece of RAM right on the CPU -- called a cache.  
 Function: Allows the RAM transmit a whole block of data to CPU and saves it into cache.  
+{: .prompt-tip }
   
 * Cache Hit
     * Data requested in RAM is already stored in the cache.
@@ -468,6 +470,7 @@ Function: Allows the RAM transmit a whole block of data to CPU and saves it into
 
 ##### Dirty Bit
 >def: A special flag of cache for each block of memory it stores. Record the mismatch between the cache's copy of the data and the real version stored in RAM, so that everything can get synced up later.  
+{: .prompt-tip }
 
   
 
