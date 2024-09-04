@@ -1,5 +1,5 @@
 ---
-categories: [Frame, Embedded]
+categories: [Application, Embedded]
 tag: [embedded_dev, C, bearpi_harmonyOS]
 ---
 # 2023-10-11-bearpi-harmonyOS

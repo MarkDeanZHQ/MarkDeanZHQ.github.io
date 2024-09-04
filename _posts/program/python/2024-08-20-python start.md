@@ -10,6 +10,11 @@ pin:
 ---
 
 ## 基本规范
+
+### 常见问题
+### pycharm debug的问题
+第一行是注释时，需要debug标注两行才能正常执行
+
 ### 注释
 
 ```python
@@ -30,9 +35,35 @@ pin:
 * 标识符不能数字开头，由字母、_、数字组成
 ![](https://raw.githubusercontent.com/MarkDeanZHQ/ImageHost/main/markdeanzhq.github.io/_posts/program/python/2024-08-20-start.md/134307125783080.png)
 
+### 基本结构语句
+
+#### if
+```python
+if condition1:
+    ...
+elif condition2:
+    ...
+else:
+    ...
+```
+#### 三目运算符 
+```python
+data = a if a > b else b  
+变量 = 表达式1 if 条件 else 表达式2
+```
+
+#### while
+```python
+while 判断条件:
+    ...
+    
+```
+#### for
+
 ## 基础函数
-### 输出 - print
-#### 格式符号
+### 输入输出
+#### 输出 - print
+##### 格式符号
 ```python
 print('str', 12) #  输出相隔一个空格 "str 12"
 print(1 + 2) #  运算输出
@@ -44,7 +75,7 @@ printf(f"I'm {name}, {age} years old.") #  前面的f 可以大写F
 ```
 ![](https://raw.githubusercontent.com/MarkDeanZHQ/ImageHost/main/markdeanzhq.github.io/_posts/program/python/2024-08-20-start.md/445885789727606.png)
 
-#### 默认输出
+##### 默认输出
 默认会添加一个换行，可以用 , end='' 自定义或去掉换行  
 ```python
 print('hello', end='66')
@@ -53,7 +84,7 @@ print('world')
 ```
 
 
-### 输入 - input
+#### 输入 - input
 返回数据<mark>都</mark>是字符串类型
 ```python
 pwd = input('pwd:')
@@ -87,3 +118,11 @@ eval('num') #  变量 num 只能作为右值
 
 #### 逻辑运算符
 ![](https://raw.githubusercontent.com/MarkDeanZHQ/ImageHost/main/markdeanzhq.github.io/_posts/program/python/2024-08-20-start.md/344163383821512.png)
+
+### 功能函数
+#### 随机函数
+```python
+import random
+random.randint(a, b) #  生成a-b 随机整数
+```
+
