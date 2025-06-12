@@ -3,6 +3,6 @@
 icon: fas fa-bars
 order: 4
 ---
-* **[GPT](https://aca.vsar.site/)**
-* **[Alist](https://zh17.tech/alist)**
+* **[GPT](https://zhq.ddns-ip.net/poe)**
+* **[Alist](https://zhq.ddns-ip.net/alist)**
 * **to be continued**
