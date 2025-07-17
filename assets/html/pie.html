@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8" />
+<title>ECharts</title>
+<!-- 引入刚刚下载的 ECharts 文件 -->
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.6.0/dist/echarts.min.js"></script>
+</head>
+
+<body>
+<!-- 为 ECharts 准备一个定义了宽高的 DOM -->
+<div id="main" style="width: 600px;height:400px;"></div>
+<script type="text/javascript">
+// 基于准备好的dom，初始化echarts实例
+var myChart = echarts.init(document.getElementById('main'));
+
+// 指定图表的配置项和数据
+function makeRandomData() {
+return [
+{
+value: Math.round(Math.random() * 100),
+name: '南'
+},
+{
+value: Math.round(Math.random() * 100),
+name: '丁'
+},
+{
+value: Math.round(Math.random() * 100),
+name: '格'
+},
+{
+value: Math.round(Math.random() * 100),
+name: '尔'
+},
+{
+value: Math.round(Math.random() * 100),
+name: '图'
+}
+];
+}
+
+option = {
+title: {
+text: '玫瑰图',
+left: 'center',
+color: '#333',
+borderWidth: 3,
+backgroundColor: 'pink',
+padding: [3, 10, 10, 5],
+lineHeight: 22,
+},
+tooltip: {
+trigger: 'item',
+formatter: '{a} <br/>{b} : {c} ({d}%)'
+},
+legend: {
+orient: 'vertical',
+left: 'left',
+data: ['南', '丁', '格', '尔', '图']
+},
+series: [
+{
+name: '数据显示',
+radius: ['35%', '70%'],
+avoidLabelOverlap: true,
+label: {
+show: false,
+position: 'center'
+},
+labelLine: {
+show: false
+},
+emphasis: {
+label: {
+show: true,
+fontSize: '30',
+fontWeight: 'bold',
+},
+focus: 'series',
+itemStyle: {
+shadowBlur: 10,
+shadowOffsetX: 0,
+shadowColor: 'rgba(0, 0, 0, 0.5)'
+}
+},
+type: 'pie',
+data: makeRandomData(),
+roseType: 'area'
+}
+]
+};
+
+let currentIndex = -1;
+
+setInterval(() => {
+myChart.setOption({
+series: {
+data: makeRandomData()
+}
+});
+var dataLen = option.series[0].data.length;
+// 取消之前高亮的图形
+myChart.dispatchAction({
+type: 'downplay',
+seriesIndex: 0,
+dataIndex: currentIndex
+});
+currentIndex = (currentIndex + 1) % dataLen;
+// 高亮当前图形
+myChart.dispatchAction({
+type: 'highlight',
+seriesIndex: 0,
+dataIndex: currentIndex
+});
+// 显示 tooltip
+myChart.dispatchAction({
+type: 'showTip',
+seriesIndex: 0,
+dataIndex: currentIndex
+});
+}, 2000);
+
+// 使用刚指定的配置项和数据显示图表。
+myChart.setOption(option);
+</script>
+</body>
+
+</html>

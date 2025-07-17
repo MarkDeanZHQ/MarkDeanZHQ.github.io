@@ -1,0 +1,1 @@
+enforce_https: false  # 注意这里是小写的，并且配置文件里的 key 是 enforce_https，不是命令行参数
