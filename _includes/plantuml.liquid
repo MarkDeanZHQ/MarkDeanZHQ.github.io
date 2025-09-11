@@ -31,11 +31,13 @@
     %}
     {%- capture text %}{% include capturehtml.liquid text=contents.first %}{% endcapture %}
     {%- assign placeholder_name = "https://httpstat.us/200/PUML-PLACEHOLDER-" | append: forloop.index -%}
+    {%- assign alt_text = include.alt | default: "PlantUML diagram" -%}
+    
     {% if include.only_img -%}
-    <img src="{{ placeholder_name }}">
+    <img src="{{ placeholder_name }}" alt="{{ alt_text | escape }}">
     {% else -%}
     <p>
-      <img src="{{ placeholder_name }}">
+      <img src="{{ placeholder_name }}" alt="{{ alt_text | escape }}">
     </p>
     {% endif -%}
     <script>
