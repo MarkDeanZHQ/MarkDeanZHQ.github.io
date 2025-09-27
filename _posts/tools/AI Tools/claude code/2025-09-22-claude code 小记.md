@@ -40,9 +40,8 @@ sudo apt-get install -y nodejs
 3. 安装claude code
     * 
 ```shell
-curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo bash -
-sudo apt-get install -y nodejs
-node --version
+npm install -g @anthropic-ai/claude-code
+claude --version
 ```
 4. 配置API
     * 方法1 配置路径：`~/.claude/settings.json`
@@ -69,7 +68,6 @@ node --version
 ```
 {: file='settings.json'}
     * 方法2 配置环境变量
-        * 
 ```shell
 echo 'export ANTHROPIC_AUTH_TOKEN="sk-xxx"' >> ~/.bashrc
 echo 'export ANTHROPIC_BASE_URL="https://jp.duckcoding.com"' >> ~/.bashrc
@@ -83,4 +81,12 @@ source ~/.bashrc
 ### 基础操作
 * 选择具体文件 `@`
     * `Tab`选择
-* 切换工作模式 `shift+tab`
+* 切换工作模式 `shift+tab`  或者 `alt+m`
+* 换行 `ctrl + enter`
+  
+  
+### 疑难杂问  
+#### 运行uv虚拟环境的问题  
+* 由于每一次执行命令的环境会重置
+* 解决方案：
+    * `PYTHONIOENCODING=utf-8 backend/.venv/Scripts/python backend/test_app.py`
