@@ -1,6 +1,6 @@
 ---
 categories: [Tools, AI]
-tags: [tools, ai]
+tags: [tools, claude]
 math: true
 mermaid: true
 render_with_liquid: true
@@ -90,3 +90,7 @@ source ~/.bashrc
 * 由于每一次执行命令的环境会重置
 * 解决方案：
     * `PYTHONIOENCODING=utf-8 backend/.venv/Scripts/python backend/test_app.py`
+    
+
+#### ccr
+[B4U2CC](https://linux.do/t/topic/1285981)
